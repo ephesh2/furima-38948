@@ -73,6 +73,12 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
+      it '価格に小数が含まれていると登録できない' do
+        @item.price = 300.1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be an integer")
+      end
+      
       it '画像が添付されていないと登録できない' do
         @item.image = nil
         @item.valid?
