@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -60,9 +62,9 @@ group :production do
   gem 'pg'
 end
 
+gem 'active_hash'
 gem 'devise'
 gem 'factory_bot_rails'
 gem 'faker'
-gem 'active_hash'
-gem "image_processing", ">= 1.2"
-gem "mini_magick"
+gem 'image_processing', '>= 1.2'
+gem 'mini_magick'

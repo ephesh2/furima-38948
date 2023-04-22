@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :item do
     title { Faker::Name.initials }
     detail { Faker::Lorem.sentences }
     category_id { rand(2..11) }
     item_status_id { rand(2..7) }
-    delivery_charge_id  { rand(2..3) }
-    prefecture_id  { rand(2..48) }
-    ship_date_id  { rand(2..4) }
-    price  { rand(300..9999999) }
-    
+    delivery_charge_id { rand(2..3) }
+    prefecture_id { rand(2..48) }
+    ship_date_id { rand(2..4) }
+    price { rand(300..9_999_999) }
+
     association :user
 
     after(:build) do |item|
