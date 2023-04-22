@@ -1,7 +1,9 @@
 class ItemsController < ApplicationController
   before_action :move_to_sign_in, only: :new
 
-  def index; end
+  def index
+    @items = Item.includes(:user).order(created_at: :DESC)
+  end
 
   def new
     @item = Item.new
