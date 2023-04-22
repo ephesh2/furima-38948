@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new edit]
-  before_action :find_item, only: %i[show edit update]
+  before_action :authenticate_user!, only: %i[new edit destroy]
+  before_action :find_item, only: %i[show edit update destroy]
 
   def index
     @items = Item.includes(:user).order(created_at: :DESC)
@@ -34,6 +34,15 @@ class ItemsController < ApplicationController
       redirect_to item_path(@item)
     else
       render :edit
+    end
+  end
+
+  def destroy
+    if current_user == @item.user
+      @item.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
     end
   end
 
