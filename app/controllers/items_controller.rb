@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ItemsController < ApplicationController
-  before_action :move_to_sign_in, only: [:new, :edit]
-  before_action :find_item, only: [:show, :edit, :update]
+  before_action :move_to_sign_in, only: %i[new edit]
+  before_action :find_item, only: %i[show edit update]
 
   def index
     @items = Item.includes(:user).order(created_at: :DESC)
@@ -21,13 +21,12 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def edit
-    if current_user != @item.user
-      redirect_to root_path
-    end
+    return unless current_user != @item.user
+
+    redirect_to root_path
   end
 
   def update
