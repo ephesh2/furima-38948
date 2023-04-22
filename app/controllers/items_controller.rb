@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ItemsController < ApplicationController
-  before_action :move_to_sign_in, only: :new
+  before_action :move_to_sign_in, only: [:new, :edit]
 
   def index
     @items = Item.includes(:user).order(created_at: :DESC)
@@ -22,6 +22,13 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
   end
 
   private
