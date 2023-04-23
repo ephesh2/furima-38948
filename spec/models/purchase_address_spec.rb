@@ -21,7 +21,7 @@ RSpec.describe PurchaseAddress, type: :model do
     end
 
     context '購入記録を保存できない' do
-      it '郵便番号が空だと入力できない' do
+      it '郵便番号が空だと保存できない' do
         @purchase_address.postal_code = ''
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Postal code can't be blank")

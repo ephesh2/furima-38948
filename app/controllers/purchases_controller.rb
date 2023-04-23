@@ -3,7 +3,7 @@ class PurchasesController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
-    if current_user != @item.user && @item.purchase == nil
+    if current_user != @item.user && @item.purchase.nil?
       @purchase_address = PurchaseAddress.new
     else
       redirect_to root_path
@@ -31,6 +31,8 @@ class PurchasesController < ApplicationController
   private
 
   def purchase_address_params
-    params.require(:purchase_address).permit(:postal_code, :prefecture_id, :municipality, :district, :building, :phone_number).merge(item_id: params[:item_id], user_id: current_user.id, token: params[:token])
+    params.require(:purchase_address).permit(:postal_code, :prefecture_id, :municipality, :district, :building, :phone_number).merge(
+      item_id: params[:item_id], user_id: current_user.id, token: params[:token]
+    )
   end
 end
