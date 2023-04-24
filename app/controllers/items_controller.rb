@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
   def show; end
 
   def edit
-    return unless current_user != @item.user
+    return unless current_user != @item.user || !@item.purchase.nil?
 
     redirect_to root_path
   end
