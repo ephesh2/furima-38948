@@ -5,8 +5,10 @@ window.addEventListener('load',function(){
   const profit = document.getElementById('profit');
   
   price.addEventListener('input', function(){
-    addTaxPrice.innerHTML = Math.floor(price.value * 0.1);
-    profit.innerHTML = Math.floor(price.value * 0.9);
+    taxValue = Math.floor(price.value * 0.1);
+    profitValue = price.value - taxValue;
+    addTaxPrice.innerHTML = taxValue;
+    profit.innerHTML = profitValue;
   })
 
 })
